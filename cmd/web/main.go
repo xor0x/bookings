@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"log"
-	"github.com/xor0x/bookings/pkg/config"
-	"github.com/xor0x/bookings/pkg/handlers"
-	"github.com/xor0x/bookings/pkg/render"
+	"github.com/xor0x/bookings/internal/config"
+	"github.com/xor0x/bookings/internal/handlers"
+	"github.com/xor0x/bookings/internal/render"
 	"net/http"
 	"time"
 

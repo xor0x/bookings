@@ -5,9 +5,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/xor0x/bookings/pkg/config"
-	"github.com/xor0x/bookings/pkg/models"
-	"github.com/xor0x/bookings/pkg/render"
+	"github.com/xor0x/bookings/internal/config"
+	"github.com/xor0x/bookings/internal/models"
+	"github.com/xor0x/bookings/internal/render"
 )
 
 // Repo the repository used by the handlers
