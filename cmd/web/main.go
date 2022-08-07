@@ -1,13 +1,16 @@
 package main
 
 import (
+	"encoding/gob"
 	"fmt"
 	"log"
-	"github.com/xor0x/bookings/internal/config"
-	"github.com/xor0x/bookings/internal/handlers"
-	"github.com/xor0x/bookings/internal/render"
 	"net/http"
 	"time"
+
+	"github.com/xor0x/bookings/internal/config"
+	"github.com/xor0x/bookings/internal/handlers"
+	"github.com/xor0x/bookings/internal/models"
+	"github.com/xor0x/bookings/internal/render"
 
 	"github.com/alexedwards/scs/v2"
 )
@@ -17,6 +20,8 @@ var session *scs.SessionManager
 
 // main is the entry point of the program
 func main() {
+
+	gob.Register(models.Reservation{})
 	
 
 	// change this true when in production
