@@ -5,10 +5,12 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/xor0x/bookings/internal/config"
 	"github.com/xor0x/bookings/internal/handlers"
+	"github.com/xor0x/bookings/internal/helpers"
 	"github.com/xor0x/bookings/internal/models"
 	"github.com/xor0x/bookings/internal/render"
 
@@ -17,6 +19,8 @@ import (
 var portNumber = ":8000"
 var app config.AppConfig
 var session *scs.SessionManager
+var infoLog *log.Logger
+var errorLog *log.Logger
 
 // main is the entry point of the program
 func main() {
@@ -26,6 +30,12 @@ func main() {
 
 	// change this true when in production
 	app.InProduction = false
+
+	infoLog = log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
+	app.InfoLog = infoLog
+
+	errorLog = log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
+	app.ErrorLog = errorLog
 
 	session = scs.New()
 	session.Lifetime = 24 * time.Hour
@@ -45,8 +55,8 @@ func main() {
 
 	repo := handlers.NewRepo(&app)
 	handlers.NewHandlers(repo)
-
 	render.NewTemplates(&app)
+	helpers.NewHlpers(&app)
 
 
 	fmt.Println("Server is running on port", portNumber)
